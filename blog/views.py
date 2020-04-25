@@ -72,7 +72,7 @@ class PostDetailView(DetailView):
 		data = request.POST.get('comment')
 		post = Post.objects.filter(id=self.kwargs.get('pk')).first()
 		new = PostComments(content=data, post=post, authors=request.user)
-		new.save(*args, **kwargs)
+		new.save()
 		return redirect('post-detail', self.kwargs.get('pk'))
 
 
