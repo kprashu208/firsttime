@@ -4,11 +4,17 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 
 class Post(models.Model):
+
+	PRIVACY_TYPE = (
+			("public" , "public") ,
+			("private" , "private")
+		)
+
 	title = models.CharField(max_length=100)
 	content = models.TextField()
 	date_posted = models.DateTimeField(default=timezone.now)
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
-	privacy = models.TextField(default='public')
+	privacy = models.CharField(default='public', choices = PRIVACY_TYPE, max_length = 10)
 
 	
 
